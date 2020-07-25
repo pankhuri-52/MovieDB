@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import Search from './components/Search';
 import axios from 'axios';
+import Results from './components/Results';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
         {/*  Search component for searching the movies */}
         <Search handleInput={handleInput} search={search} />
         {/* Results component for the results of the movies shown */}
+        <Results results={state.results} />
         {/* Popup component for the details of every movie */}
       </main>
     </div>
