@@ -6,7 +6,7 @@ const Results = ({results}) => {
         <section className="results">
             {
                 results.map(result => (
-                    <Result result={result} key={result} />
+                    <Result result={result} key={result.imdbID} />
                 ))
             }
         </section>
