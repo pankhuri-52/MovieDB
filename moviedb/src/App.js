@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import Search from './components/Search';
 import axios from 'axios';
 import Results from './components/Results';
+import Popup from './components/Popup';
 
 function App() {
 
@@ -33,6 +34,22 @@ function App() {
     });
   }
 
+  const openPopup = id => {
+    axios(apiurl + "&i=" +id).then(({ data }) => {
+      let result = data;
+
+      setState(prevState => {
+        return { ...prevState,selected: result}
+       });
+    });
+  }
+
+  const closePopup = () => {
+    setState(prevState => {
+      return { ...prevState,selected: {} }
+     });
+  }
+
   return (
     <div className="App">
       <header>
@@ -42,8 +59,9 @@ function App() {
         {/*  Search component for searching the movies */}
         <Search handleInput={handleInput} search={search} />
         {/* Results component for the results of the movies shown */}
-        <Results results={state.results} />
+        <Results results={state.results} openPopup={openPopup} />
         {/* Popup component for the details of every movie */}
+        {(typeof state.selected.Title != "undefined") ? <Popup selected={state.selected} closePopup={closePopup} />: false } 
       </main>
     </div>
   );
