@@ -6,7 +6,7 @@ const Results = ({results, openPopup}) => {
         <section className="results">
             {
                 results.map(result => (
-                    <Result result={result} key={result.imdbID} openPopup={openPopup} />
+                    <Result key={result.Title} result={result} openPopup={openPopup} />
                 ))
             }
         </section>
